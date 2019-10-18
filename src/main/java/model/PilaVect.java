@@ -23,6 +23,10 @@ public class PilaVect implements Pila<Regalo>{
 
     @Override
     public Regalo eliminar() {
+        if(pilaVacia()){
+            return null; // a este patrón se le conoce como early termination o early return
+            // a muchos no les gusta, pero es mega eficiente, si no se dan las condiciones simplemente no crre el resto del método
+        }
         return pila.removeLast();
     }
 
@@ -46,9 +50,18 @@ public class PilaVect implements Pila<Regalo>{
         return pila.size();
     }
      @Override
- public String toString(){
-     String tipo="";
+    public String toString(){
      Regalo r = new Regalo();
     return r.getTipo() + " / " + r.getValor();
  }
+
+    public LinkedList<Regalo> getPila() {
+        return pila;
+    }
+    
+    public void imprimir(){
+        for (int i = 0; i < pila.size(); i++) {
+            System.out.println(pila.get(i).toString());
+        }
+    }
 }

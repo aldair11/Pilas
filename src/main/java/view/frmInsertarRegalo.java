@@ -6,6 +6,8 @@
 package view;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.Cola;
 import model.ColaCol;
 import model.Persona;
 import model.Pila;
@@ -24,6 +26,7 @@ public class frmInsertarRegalo extends javax.swing.JFrame {
     public frmInsertarRegalo() {
         initComponents();
     }
+    PilaVect pl = new PilaVect();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -54,7 +57,7 @@ public class frmInsertarRegalo extends javax.swing.JFrame {
 
         jLabel3.setText("VALOR:");
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto", "Niño", " " }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Adulto", "Niño" }));
 
         btnInsertar.setText("INSERTAR");
         btnInsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +94,11 @@ public class frmInsertarRegalo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("MÁS COSTOSO ARRIBA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,62 +164,75 @@ public class frmInsertarRegalo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-       agregar();
+        agregar();
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-       mostrar();
+        pl.imprimir();
+        mostrar();
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      
+        mostrar(pl.getPila().get(0));
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void agregar() {
-        PilaVect pl = new PilaVect();
+
         double valor = 0;
         String tipo;
-            tipo = (String) cmbTipo.getSelectedItem();
-            valor = Double.parseDouble(txtValor.getText());
-            Regalo x = new Regalo(tipo, valor);
-            pl.insertar(x);
-           JOptionPane.showMessageDialog(null, "Datos Agregados Correctamente");
-           txtValor.setText("");
+        tipo = (String) cmbTipo.getSelectedItem();
+        valor = Double.parseDouble(txtValor.getText());
+        Regalo x = new Regalo(tipo, valor);
+        pl.insertar(x);
+        JOptionPane.showMessageDialog(null, "Datos Agregados Correctamente");
+        txtValor.setText("");
+    }
+
+    public void mostrar() {
+        Regalo a;
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Valor");
+        Object[] vector = new Object[2];
+        for (int i = 0; i < pl.getPila().size(); i++) {
+            a = pl.getPila().get(i);
+            vector[0] = a.getTipo();
+            vector[1] = a.getValor();
+            modelo.addRow(vector);
         }
-    
-    public void mostrar(){
-        PilaVect pl = new PilaVect();
-        if(pl.pilaVacia()==true){
-           JOptionPane.showMessageDialog(null, "La pila está vacia");
-        }else{
-            Pila<Regalo> aux = new PilaVect();
-           while(aux!=null){
-                JOptionPane.showMessageDialog(null, "" + aux.toString());
-                
-           }
-       }
+
+    }
+
+    public void mostrar(Regalo a) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        jTable1.setModel(modelo);
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Valor");
+        Object[] vector = new Object[2];
+        for (int i = 0; i < pl.getPila().size(); i++) {
+            a = pl.getPila().get(i);
+            vector[0] = a.getTipo();
+            vector[1] = a.getValor();
+            modelo.addRow(vector);
+        }
+
+    }
+
+    public void masCaro(Pila<Regalo> pi) {
+       Regalo regaloMasCaro = null; //null es un valor centinela, es decir, un vaor no válido
+       
+        Pila<Regalo> respaldo = new PilaVect(); 
+        while (!pi.pilaVacia()) {
+            pi.eliminar();
+        }
         
     }
-    
-    public void masCaro(Pila<Regalo> pi){
-        Pila<Regalo> aux = new PilaVect();
-        while(!pi.pilaVacia()){
-            Regalo mx = pi.obtener();
-            double dato = pi.eliminar().getValor();
-            aux.insertar(mx);
-            double mayor=0;
-            if(dato>mayor){
-                mayor=dato;
-                Regalo m = mx;
-            }
-        }
-        while(!aux.pilaVacia()){
-            if(aux.obtener()!=m){
-                pi.insertar(aux.eliminar());
-            }
-        }
-        pi.insertar(m);
-    }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnInsertar;

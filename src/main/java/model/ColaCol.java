@@ -44,4 +44,19 @@ public class ColaCol implements Cola<Persona> {
     public boolean colaVacia() {
         return col.isEmpty();
     }
+    
+    @Override
+    public String toString(){
+     Persona p = new Persona();
+    return p.getNombre() + " / " + p.getSexo() + " / " + p.getEdad();
+ }
+    public LinkedList<Persona> getCol() {
+        return col;
+    }
+    
+    public void imprimir(){
+        for (int i = 0; i < col.size(); i++) {
+            System.out.println(col.get(i).toString());
+        }
+}
 }

@@ -1,6 +1,8 @@
 
 package model;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author aldai
@@ -15,4 +17,8 @@ public interface Pila<E>{
     boolean pilaVacia();
     String mostrar();
     int tamaño();
+    void imprimir();
+
+    LinkedList<Regalo> getPila();
+    
 }

@@ -24,7 +24,7 @@ public class frmInsertarPersona extends javax.swing.JFrame {
     public frmInsertarPersona() {
         initComponents();
     }
-
+    ColaCol cl = new ColaCol();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,9 +46,9 @@ public class frmInsertarPersona extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtnombre = new javax.swing.JTextField();
         txtedad = new javax.swing.JTextField();
-        txtsexo = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        cmbSexo = new javax.swing.JComboBox<>();
 
         jTextField3.setText("jTextField3");
 
@@ -89,51 +89,53 @@ public class frmInsertarPersona extends javax.swing.JFrame {
 
         jLabel4.setText("Sexo");
 
-        jButton1.setText("Insertar");
+        jButton1.setText("INSERTAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Salir");
+        jButton4.setText("SALIR");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
+        cmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HOMBRE", "MUJER" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
+                .addContainerGap(101, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(184, 184, 184))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(75, 75, 75)
-                                .addComponent(txtsexo, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(57, 57, 57)
-                                .addComponent(jButton4)))
-                        .addGap(112, 112, 112))))
+                        .addComponent(jButton1)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(98, 98, 98))))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel3)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,11 +149,11 @@ public class frmInsertarPersona extends javax.swing.JFrame {
                         .addComponent(txtnombre)
                         .addComponent(jLabel2))
                     .addComponent(txtedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtsexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(59, 59, 59)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(cmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton4))
@@ -163,27 +165,24 @@ public class frmInsertarPersona extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     agregar();
+    cl.imprimir();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
     public void agregar() {
-        ColaCol fr = new ColaCol();
-        PilaVect pl = new PilaVect();
+      
         int edad = 0;
         String nombre;
         String sexo;
-        Persona per=null;
-          
-            sexo = txtsexo.getText();
+            sexo = (String)cmbSexo.getSelectedItem();
             nombre = txtnombre.getText();
             edad = Integer.parseInt(txtedad.getText());
             Persona pers = new Persona(nombre, edad, sexo);
-            fr.insertar(per);
+            cl.insertar(pers);
            JOptionPane.showMessageDialog(null, "Datos Agregados Correctamente");
            txtnombre.setText("");
-           txtsexo.setText("");
            txtedad.setText(""); 
         }
     
@@ -193,6 +192,7 @@ public class frmInsertarPersona extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbSexo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -207,6 +207,5 @@ public class frmInsertarPersona extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtedad;
     private javax.swing.JTextField txtnombre;
-    private javax.swing.JTextField txtsexo;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
   </Properties>
@@ -114,10 +114,9 @@
     <Component class="javax.swing.JComboBox" name="cmbTipo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="2">
             <StringItem index="0" value="Adulto"/>
             <StringItem index="1" value="Ni&#xf1;o"/>
-            <StringItem index="2" value=" "/>
           </StringArray>
         </Property>
       </Properties>
@@ -189,6 +188,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="M&#xc1;S COSTOSO ARRIBA"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
